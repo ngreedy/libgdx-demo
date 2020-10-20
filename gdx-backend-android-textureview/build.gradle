@@ -4,6 +4,13 @@ android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
 
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+//        ndk {
+//            abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+//        }
+    }
 
     buildTypes {
         release {
@@ -15,14 +22,51 @@ android {
         abortOnError false
     }
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libsc']
+            assets.srcDir "assets"
+        }
+    }
 }
+
+
+configurations { natives }
 
 dependencies {
     //compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly "com.badlogicgames.gdx:gdx:1.9.9"
+    compileOnly "com.badlogicgames.gdx:gdx:1.9.10"
 
     compileOnly 'com.android.support:appcompat-v7:28.0.0'
+
+    natives "com.badlogicgames.gdx:gdx-platform:1.9.10:natives-armeabi-v7a"
+    natives "com.badlogicgames.gdx:gdx-platform:1.9.10:natives-armeabi"
+//    natives "com.badlogicgames.gdx:gdx-platform:1.9.10:natives-armeabi-v8a"
+//    natives "com.badlogicgames.gdx:gdx-platform:1.9.10:natives-x86_64"
+    natives "com.badlogicgames.gdx:gdx-platform:1.9.10:natives-x86"
+
 }
+
+//task copyAndroidNatives() {
+//    file("libs/armeabi/").mkdirs();
+//    file("libs/armeabi-v7a/").mkdirs();
+//    file("libs/arm64-v8a/").mkdirs();
+//
+//    configurations.natives.files.each { jar ->
+//        def outputDir = null
+//        if(jar.name.endsWith("natives-arm64-v8a.jar")) outputDir = file("libs/arm64-v8a")
+//        if(jar.name.endsWith("natives-armeabi-v7a.jar")) outputDir = file("libs/armeabi-v7a")
+//        if(jar.name.endsWith("natives-armeabi-x86.jar")) outputDir = file("libs/x86")
+//        if(jar.name.endsWith("natives-armeabi-x86_64.jar")) outputDir = file("libs/x86_64")
+//        if(outputDir != null) {
+//            copy {
+//                from zipTree(jar)
+//                into outputDir
+//                include "*.so"
+//            }
+//        }
+//    }
+//}
 
 
 task sourcesJar(type: Jar) {
@@ -33,7 +77,7 @@ task sourcesJar(type: Jar) {
 
 
 task makeJar(type: Copy) {
-    def name = "Libgdx-Backend-Android-TextureView-1.9.9.jar"
+    def name = "Libgdx-Backend-Android-TextureView-1.9.10.jar"
     delete 'build/libs/' + name
     from('build/intermediates/packaged-classes/release/')
     into('build/libs/')

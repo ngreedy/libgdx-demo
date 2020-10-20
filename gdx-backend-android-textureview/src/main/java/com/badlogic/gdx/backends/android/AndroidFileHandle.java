@@ -19,6 +19,7 @@ package com.badlogic.gdx.backends.android;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -83,6 +84,12 @@ public class AndroidFileHandle extends FileHandle {
             try {
                 return assets.open(file.getPath());
             } catch (IOException ex) {
+                throw new GdxRuntimeException("Error reading file: " + file + " (" + type + ")", ex);
+            }
+        }else if (type==FileType.External){
+            try {
+                return new FileInputStream(file.getPath());
+            } catch (FileNotFoundException ex) {
                 throw new GdxRuntimeException("Error reading file: " + file + " (" + type + ")", ex);
             }
         }

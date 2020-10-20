@@ -221,6 +221,11 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
     }
 
     @Override
+    public int getMaxPointers() {
+        return 0;
+    }
+
+    @Override
     public void getTextInput(final TextInputListener listener, final String title, final String text, final String hint) {
         handle.post(new Runnable() {
             public void run() {
@@ -627,6 +632,16 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
     }
 
     @Override
+    public void setCatchKey(int keycode, boolean catchKey) {
+
+    }
+
+    @Override
+    public boolean isCatchKey(int keycode) {
+        return false;
+    }
+
+    @Override
     public void vibrate(int milliseconds) {
         vibrator.vibrate(milliseconds);
     }
@@ -658,6 +673,11 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
             }
             return (touched[0] && (this.button[0] == button));
         }
+    }
+
+    @Override
+    public boolean isButtonJustPressed(int button) {
+        return false;
     }
 
     final float[] R = new float[9];

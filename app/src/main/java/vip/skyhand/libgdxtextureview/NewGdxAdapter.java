@@ -1,55 +1,76 @@
 package vip.skyhand.libgdxtextureview;
 
+import android.util.Log;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.esotericsoftware.spine.*;
+import com.esotericsoftware.spine.AnimationState;
+import com.esotericsoftware.spine.AnimationStateData;
+import com.esotericsoftware.spine.Skeleton;
+import com.esotericsoftware.spine.SkeletonData;
+import com.esotericsoftware.spine.SkeletonJson;
+import com.esotericsoftware.spine.SkeletonRenderer;
+import com.esotericsoftware.spine.SkeletonRendererDebug;
 
-public class GdxAdapter extends ApplicationAdapter {
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
+
+public class NewGdxAdapter extends ApplicationAdapter {
 
     private OrthographicCamera camera;
-    private SpriteBatch batch;
+    private PolygonSpriteBatch batch;
     private SkeletonRenderer renderer;
     private SkeletonRendererDebug debugRenderer;
     private TextureAtlas atlas;
     private Skeleton skeleton;
     private AnimationState state;
     private SkeletonJson json;
+    private String filePath;
 
     @Override
     public void create() {
         camera = new OrthographicCamera();
-        batch = new SpriteBatch();
+        batch = new PolygonSpriteBatch();
         renderer = new SkeletonRenderer();
         //renderer.setPremultipliedAlpha(true); // PMA results in correct blending without outlines.
         debugRenderer = new SkeletonRendererDebug();
         debugRenderer.setBoundingBoxes(false);
         debugRenderer.setRegionAttachments(false);
 
-        atlas = new TextureAtlas(Gdx.files.internal("old/goblins.atlas"));
-        json = new SkeletonJson(atlas); // This loads skeleton JSON data, which is stateless.
-        json.setScale(3F);
-        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("old/goblins.json"));
-        skeleton = new Skeleton(skeletonData); // Skeleton holds skeleton state (bone positions, slot attachments, etc).
-        skeleton.setPosition(540, 0);
+        Log.e("GdxAdapter", "create: " + filePath);
+        File file = new File(filePath);
+        String[] split = file.getName().split("\\.");
+        Log.e("GdxAdapter", "create: " + file.getName());
+        Log.e("GdxAdapter", "create: " + split[0]);
 
+        File parent = new File(file.getParent());
+
+        atlas = new TextureAtlas(Gdx.files.external(file.getParent() + "/" + split[0] + ".atlas"));
+        json = new SkeletonJson(atlas); // This loads skeleton JSON data, which is stateless.
+        json.setScale(2f);
+        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.external(file.getParent() + "/" + split[0] + ".json"));
+        skeleton = new Skeleton(skeletonData); // Skeleton holds skeleton state (bone positions, slot attachments, etc).
+        float width = skeletonData.getWidth();
+        float height = skeletonData.getHeight();
+        skeleton.setPosition(ScreenUtils.getScreenWidth() / 2, 0);
+        int screenWidth = ScreenUtils.getScreenWidth();
         AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
-//        stateData.setMix("walk", "jump", 1f);
-//        stateData.setMix("jump", "walk", 1f);
+//        stateData.setMix("walk", "jump", 0.2f);
+//        stateData.setMix("jump", "walk", 0.2f);
 
         state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
-        state.setTimeScale(1.0f); // Slow all animations down to 50% speed.
-
+//        state.setTimeScale(1.0f); // Slow all animations down to 50% speed.
 
         // Queue animations on track 0.
+        state.setAnimation(0, "animation", true);
 //        state.setAnimation(0, "walk", true);
 
-//        state.setEmptyAnimation(0,1f);
-
-//        state.addAnimation(0, "jump", false, 0); // Run after the jump.
+//        state.addAnimation(0, "walk", true, 0); // Run after the jump.
     }
 
 
@@ -79,6 +100,8 @@ public class GdxAdapter extends ApplicationAdapter {
     @Override
     public void resize(int width, int height) {
         camera.setToOrtho(false); // Update camera with new size.
+        camera.viewportWidth = ScreenUtils.getScreenWidth();
+        camera.viewportHeight = ScreenUtils.getScreenHeight();
     }
 
     @Override
@@ -87,18 +110,12 @@ public class GdxAdapter extends ApplicationAdapter {
     }
 
     public void setAnimate() {
-        state.clearTracks();
-        state.addAnimation(0, "walk", true, 0f);
-        state.addAnimation(0, "jump", true  , 0f);
-        state.addAnimation(0, "walk", true, 0f);
-//        state.addEmptyAnimation(0,1f,0f);
+//        setAnimate("jump");
+//        setAnimate("walk"); // Run after the jump.
     }
-
 
     public void setAnimate(String animate) {
         state.addAnimation(0, animate, true, 0);
-        state.addEmptyAnimation(0,1f,0);
-//        state.addAnimation(0, animate, true, 0);
     }
 
     public void zoomBig() {
@@ -107,5 +124,9 @@ public class GdxAdapter extends ApplicationAdapter {
 
     public void zoomSmall() {
         camera.zoom = 1f;
+    }
+
+    public void setName(@NotNull String filePath) {
+        this.filePath = filePath;
     }
 }

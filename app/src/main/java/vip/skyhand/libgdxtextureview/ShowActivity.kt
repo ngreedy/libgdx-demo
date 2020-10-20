@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.PixelFormat
 import android.os.Bundle
-import android.view.MotionEvent
+import android.util.Log
 import android.view.SurfaceView
 import android.view.TextureView
 import android.view.View
@@ -16,49 +16,45 @@ import kotlinx.android.synthetic.main.activity_spine_test.*
 class ShowActivity : AndroidApplication() {
 
     lateinit var mGdxAdapter: GdxAdapter
+    lateinit var mNewGdxAdapter: NewGdxAdapter
     lateinit var mGdxView: View
 
     companion object {
-        fun start(context: Context, useTextureView: Boolean, isTranlate: Boolean = true) {
+        fun start(
+            context: Context,
+            useTextureView: Boolean,
+            isTranlate: Boolean = true,
+            name: String
+        ) {
             val intent = Intent(context, ShowActivity::class.java)
             intent.putExtra("USETEXTUREVIEW", useTextureView)
             intent.putExtra("ISTRANLATE", isTranlate)
+            intent.putExtra("NAME", name)
             context.startActivity(intent)
         }
     }
 
     private var useTextureView = true
     private var isTranlate = true
+    private var name = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_spine_test)
         useTextureView = intent.getBooleanExtra("USETEXTUREVIEW", true)
         isTranlate = intent.getBooleanExtra("ISTRANLATE", true)
-        initGDX()
+        name = intent.getStringExtra("NAME")
+        Log.e("ShowActivity", "onCreate: " + name)
         initListener()
+
+        initGDX()
     }
 
     private fun initListener() {
-        btn_jump.setOnClickListener {
-            mGdxAdapter.setAnimate("jump")
-        }
-        btn_walk.setOnClickListener {
-            mGdxAdapter.setAnimate("walk")
-        }
-
-        mGdxView.setOnTouchListener(object : View.OnTouchListener {
-            override fun onTouch(v: View, event: MotionEvent): Boolean {
-                val action = event.action
-                if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
-                    mGdxAdapter.setAnimate()
-                }
-                return true
-            }
-        })
     }
 
 
     private fun initGDX() {
+        ScreenUtils.initialization(this)
         val cfg = AndroidApplicationConfiguration()
 
         cfg.useTextureView = useTextureView  //是否使用TextureView
@@ -68,8 +64,10 @@ class ShowActivity : AndroidApplication() {
         cfg.b = cfg.a
         cfg.g = cfg.b
         cfg.r = cfg.g
-        mGdxAdapter = GdxAdapter()
-        mGdxView = initializeForView(mGdxAdapter, cfg)
+//        mGdxAdapter = GdxAdapter()
+        mNewGdxAdapter = NewGdxAdapter()
+        mNewGdxAdapter.setName(name)
+        mGdxView = initializeForView(mNewGdxAdapter, cfg)
 
         if (mGdxView is SurfaceView) {
             //Log.e("@@", "当前是SurfaceView")
@@ -87,6 +85,11 @@ class ShowActivity : AndroidApplication() {
 
         mLayoutGdx.addView(mGdxView)
 
+
+
+        button2.setOnClickListener {
+//            mGdxAdapter?.setAnimate()
+        }
     }
 
 }

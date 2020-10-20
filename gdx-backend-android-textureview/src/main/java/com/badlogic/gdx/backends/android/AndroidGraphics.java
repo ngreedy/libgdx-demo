@@ -16,6 +16,7 @@
 
 package com.badlogic.gdx.backends.android;
 
+import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.EGLConfigChooser;
 import android.opengl.GLSurfaceView.Renderer;
@@ -114,9 +115,23 @@ public class AndroidGraphics implements Graphics, Renderer, GLTextureView.Render
         this(application, config, resolutionStrategy, true);
     }
 
+    private int[] ints = {0};
+
+    public void glActiveTexture(int texture){
+        GLES20.glActiveTexture(texture);
+    }
+
+    public void glAttachShader(int program, int shader){
+        GLES20.glAttachShader(program, shader);
+    }
+
+    public void glBindAttribLocation(int program, int index, String name){
+        GLES20.glBindAttribLocation(program, index, name);
+    }
+
     public AndroidGraphics(AndroidApplicationBase application, AndroidApplicationConfiguration config,
                            ResolutionStrategy resolutionStrategy, boolean focusableView) {
-        AndroidGL20.init();
+//        AndroidGL20.init();
         this.config = config;
         this.app = application;
         view = createGLSurfaceView(application, resolutionStrategy);
@@ -125,6 +140,7 @@ public class AndroidGraphics implements Graphics, Renderer, GLTextureView.Render
             view.setFocusable(true);
             view.setFocusableInTouchMode(true);
         }
+
     }
 
     protected void preserveEGLContextOnPause() {
