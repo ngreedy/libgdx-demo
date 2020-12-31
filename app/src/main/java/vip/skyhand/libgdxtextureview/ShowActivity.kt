@@ -1,7 +1,9 @@
 package vip.skyhand.libgdxtextureview
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.PixelFormat
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +11,10 @@ import android.view.SurfaceView
 import android.view.TextureView
 import android.view.View
 import android.widget.Toast
-import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 import kotlinx.android.synthetic.main.activity_spine_test.*
 
-class ShowActivity : AndroidApplication() {
+class ShowActivity : Activity() {
 
     lateinit var mGdxAdapter: GdxAdapter
     lateinit var mNewGdxAdapter: NewGdxAdapter
@@ -47,11 +48,15 @@ class ShowActivity : AndroidApplication() {
         initListener()
 
         initGDX()
+
+        ripple.startRipple()
     }
 
     private fun initListener() {
     }
 
+
+    lateinit var attach: GdxAttach
 
     private fun initGDX() {
         ScreenUtils.initialization(this)
@@ -64,10 +69,13 @@ class ShowActivity : AndroidApplication() {
         cfg.b = cfg.a
         cfg.g = cfg.b
         cfg.r = cfg.g
-//        mGdxAdapter = GdxAdapter()
-        mNewGdxAdapter = NewGdxAdapter()
-        mNewGdxAdapter.setName(name)
-        mGdxView = initializeForView(mNewGdxAdapter, cfg)
+        mGdxAdapter = GdxAdapter()
+//        mNewGdxAdapter = NewGdxAdapter()
+//        mNewGdxAdapter.setName(name)
+//        mGdxView = initializeForView(mNewGdxAdapter, cfg)
+        attach = GdxAttach()
+        attach.setLifeOwner(this, gdxContainer)
+        mGdxView = attach.initializeForView(mGdxAdapter, cfg)
 
         if (mGdxView is SurfaceView) {
             //Log.e("@@", "当前是SurfaceView")
@@ -83,13 +91,42 @@ class ShowActivity : AndroidApplication() {
             //Log.e("@@", "当前是TextureView")
         }
 
-        mLayoutGdx.addView(mGdxView)
+        gdxContainer.addView(mGdxView)
 
 
 
         button2.setOnClickListener {
 //            mGdxAdapter?.setAnimate()
         }
+
+        button.setOnClickListener {
+            ShowActivity.start(this, useTextureView = true, isTranlate = true, name = "")
+        }
     }
 
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        attach.onWindowFocusChanged(hasFocus)
+    }
+
+    override fun onPause() {
+        attach.onPause()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        attach.onResume()
+        super.onResume()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        attach.onConfigurationChanged(newConfig)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        attach.onActivityResult(requestCode,resultCode,data)
+    }
 }

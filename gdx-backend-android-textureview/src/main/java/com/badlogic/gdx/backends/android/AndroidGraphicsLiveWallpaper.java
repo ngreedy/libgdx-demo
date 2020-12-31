@@ -149,7 +149,7 @@ public final class AndroidGraphicsLiveWallpaper extends AndroidGraphics {
     }
 
     @Override
-    void resume() {
+    public void resume() {
         synchronized (synch) {
             running = true;
             resume = true;

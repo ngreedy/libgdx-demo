@@ -1,0 +1,412 @@
+
+pet_egg_dog_child.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cat_star
+  rotate: false
+  xy: 1755, 581
+  size: 128, 138
+  orig: 128, 138
+  offset: 0, 0
+  index: -1
+dog_anim1
+  rotate: false
+  xy: 2, 621
+  size: 223, 401
+  orig: 223, 401
+  offset: 0, 0
+  index: -1
+dog_anim2
+  rotate: false
+  xy: 2, 218
+  size: 223, 401
+  orig: 223, 401
+  offset: 0, 0
+  index: -1
+dog_anim3
+  rotate: false
+  xy: 227, 621
+  size: 223, 401
+  orig: 223, 401
+  offset: 0, 0
+  index: -1
+dog_anim4
+  rotate: false
+  xy: 227, 218
+  size: 223, 401
+  orig: 223, 401
+  offset: 0, 0
+  index: -1
+dog_anim5
+  rotate: false
+  xy: 452, 621
+  size: 223, 401
+  orig: 223, 401
+  offset: 0, 0
+  index: -1
+dog_b_leg1
+  rotate: true
+  xy: 1886, 247
+  size: 85, 147
+  orig: 85, 147
+  offset: 0, 0
+  index: -1
+dog_b_leg2
+  rotate: true
+  xy: 1283, 309
+  size: 91, 152
+  orig: 91, 152
+  offset: 0, 0
+  index: -1
+dog_black_eye
+  rotate: false
+  xy: 677, 625
+  size: 165, 52
+  orig: 165, 52
+  offset: 0, 0
+  index: -1
+dog_body
+  rotate: true
+  xy: 677, 679
+  size: 343, 201
+  orig: 343, 201
+  offset: 0, 0
+  index: -1
+dog_body_behind
+  rotate: false
+  xy: 2, 2
+  size: 180, 214
+  orig: 180, 214
+  offset: 0, 0
+  index: -1
+dog_body_glow
+  rotate: false
+  xy: 804, 282
+  size: 199, 341
+  orig: 199, 341
+  offset: 0, 0
+  index: -1
+dog_body_mask
+  rotate: true
+  xy: 961, 628
+  size: 74, 69
+  orig: 74, 69
+  offset: 0, 0
+  index: -1
+dog_cry_eye
+  rotate: false
+  xy: 452, 218
+  size: 156, 49
+  orig: 156, 49
+  offset: 0, 0
+  index: -1
+dog_cry_mouth
+  rotate: false
+  xy: 880, 681
+  size: 79, 21
+  orig: 79, 21
+  offset: 0, 0
+  index: -1
+dog_dun_glow
+  rotate: true
+  xy: 184, 3
+  size: 213, 320
+  orig: 213, 320
+  offset: 0, 0
+  index: -1
+dog_ear1
+  rotate: true
+  xy: 1099, 638
+  size: 64, 79
+  orig: 64, 79
+  offset: 0, 0
+  index: -1
+dog_ear2
+  rotate: true
+  xy: 844, 626
+  size: 51, 91
+  orig: 51, 91
+  offset: 0, 0
+  index: -1
+dog_eyeclose
+  rotate: false
+  xy: 643, 230
+  size: 60, 37
+  orig: 60, 37
+  offset: 0, 0
+  index: -1
+dog_f_leg1
+  rotate: false
+  xy: 1437, 321
+  size: 134, 161
+  orig: 134, 161
+  offset: 0, 0
+  index: -1
+dog_f_leg2
+  rotate: false
+  xy: 1886, 68
+  size: 138, 177
+  orig: 138, 177
+  offset: 0, 0
+  index: -1
+dog_head
+  rotate: true
+  xy: 1573, 329
+  size: 186, 160
+  orig: 186, 160
+  offset: 0, 0
+  index: -1
+dog_meimao
+  rotate: true
+  xy: 610, 221
+  size: 46, 31
+  orig: 46, 31
+  offset: 0, 0
+  index: -1
+dog_openmouth
+  rotate: false
+  xy: 760, 244
+  size: 59, 23
+  orig: 59, 23
+  offset: 0, 0
+  index: -1
+dog_shetou
+  rotate: false
+  xy: 727, 236
+  size: 31, 31
+  orig: 31, 31
+  offset: 0, 0
+  index: -1
+dog_stand_body
+  rotate: false
+  xy: 1283, 402
+  size: 130, 236
+  orig: 130, 236
+  offset: 0, 0
+  index: -1
+dog_stand_body2
+  rotate: false
+  xy: 704, 10
+  size: 140, 218
+  orig: 140, 218
+  offset: 0, 0
+  index: -1
+dog_stand_body2_wave
+  rotate: false
+  xy: 1415, 484
+  size: 140, 218
+  orig: 140, 218
+  offset: 0, 0
+  index: -1
+dog_stand_face
+  rotate: true
+  xy: 1886, 538
+  size: 181, 160
+  orig: 181, 160
+  offset: 0, 0
+  index: -1
+dog_tear
+  rotate: true
+  xy: 705, 234
+  size: 33, 20
+  orig: 33, 20
+  offset: 0, 0
+  index: -1
+dog_trail
+  rotate: false
+  xy: 1735, 334
+  size: 178, 181
+  orig: 178, 181
+  offset: 0, 0
+  index: -1
+dog_trail_glow
+  rotate: false
+  xy: 1602, 32
+  size: 89, 91
+  orig: 89, 91
+  offset: 0, 0
+  index: -1
+dog_wavehand
+  rotate: true
+  xy: 1180, 640
+  size: 62, 110
+  orig: 62, 110
+  offset: 0, 0
+  index: -1
+dog_zou_mask
+  rotate: true
+  xy: 1292, 644
+  size: 58, 81
+  orig: 58, 81
+  offset: 0, 0
+  index: -1
+fazhen_00
+  rotate: false
+  xy: 452, 269
+  size: 350, 350
+  orig: 350, 350
+  offset: 0, 0
+  index: -1
+par
+  rotate: false
+  xy: 1032, 637
+  size: 65, 65
+  orig: 65, 65
+  offset: 0, 0
+  index: -1
+run_mask
+  rotate: true
+  xy: 1486, 8
+  size: 107, 114
+  orig: 107, 114
+  offset: 0, 0
+  index: -1
+shine_00
+  rotate: false
+  xy: 1684, 127
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+smoke1
+  rotate: false
+  xy: 846, 4
+  size: 318, 276
+  orig: 318, 276
+  offset: 0, 0
+  index: -1
+smoke2
+  rotate: true
+  xy: 880, 704
+  size: 318, 276
+  orig: 318, 276
+  offset: 0, 0
+  index: -1
+smoke3
+  rotate: true
+  xy: 1005, 308
+  size: 318, 276
+  orig: 318, 276
+  offset: 0, 0
+  index: -1
+smoke4
+  rotate: true
+  xy: 1158, 704
+  size: 318, 276
+  orig: 318, 276
+  offset: 0, 0
+  index: -1
+smoke5
+  rotate: false
+  xy: 1166, 30
+  size: 318, 276
+  orig: 318, 276
+  offset: 0, 0
+  index: -1
+smoke_00
+  rotate: true
+  xy: 506, 14
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_01
+  rotate: true
+  xy: 605, 14
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_02
+  rotate: true
+  xy: 1486, 117
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_03
+  rotate: true
+  xy: 1436, 820
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_04
+  rotate: false
+  xy: 1436, 721
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_05
+  rotate: true
+  xy: 1535, 820
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_06
+  rotate: true
+  xy: 1634, 820
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_07
+  rotate: true
+  xy: 1557, 517
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_08
+  rotate: false
+  xy: 1640, 721
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_09
+  rotate: true
+  xy: 1733, 820
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_10
+  rotate: true
+  xy: 1832, 820
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_11
+  rotate: false
+  xy: 1844, 721
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_12
+  rotate: true
+  xy: 1931, 820
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_13
+  rotate: true
+  xy: 1656, 517
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1
+smoke_14
+  rotate: true
+  xy: 1585, 125
+  size: 202, 97
+  orig: 202, 97
+  offset: 0, 0
+  index: -1

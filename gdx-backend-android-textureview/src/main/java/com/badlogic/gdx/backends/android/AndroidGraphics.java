@@ -74,9 +74,9 @@ public class AndroidGraphics implements Graphics, Renderer, GLTextureView.Render
      * {@link AndroidGraphics#pause} variable never be set to false. As a result, the {@link AndroidGraphics#pause()} method will
      * kill the current process to avoid ANR
      */
-    static volatile boolean enforceContinuousRendering = false;
+    public static volatile boolean enforceContinuousRendering = false;
 
-    final View view;
+    public final View view;
     int width;
     int height;
     AndroidApplicationBase app;
@@ -433,14 +433,14 @@ public class AndroidGraphics implements Graphics, Renderer, GLTextureView.Render
 
     Object synch = new Object();
 
-    void resume() {
+    public void resume() {
         synchronized (synch) {
             running = true;
             resume = true;
         }
     }
 
-    void pause() {
+    public void pause() {
         synchronized (synch) {
             if (!running) return;
             running = false;
@@ -467,7 +467,7 @@ public class AndroidGraphics implements Graphics, Renderer, GLTextureView.Render
         }
     }
 
-    void destroy() {
+    public void destroy() {
         synchronized (synch) {
             running = false;
             destroy = true;

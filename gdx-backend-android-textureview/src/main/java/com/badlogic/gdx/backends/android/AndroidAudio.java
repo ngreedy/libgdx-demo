@@ -70,7 +70,7 @@ public final class AndroidAudio implements Audio {
         }
     }
 
-    protected void pause() {
+    public void pause() {
         if (soundPool == null) {
             return;
         }
@@ -86,7 +86,7 @@ public final class AndroidAudio implements Audio {
         this.soundPool.autoPause();
     }
 
-    protected void resume() {
+    public void resume() {
         if (soundPool == null) {
             return;
         }

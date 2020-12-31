@@ -57,8 +57,8 @@ dependencies {
 
 
     //解析spine
-    implementation 'com.esotericsoftware.spine:spine-libgdx:3.6.52.1'
-//    implementation 'com.esotericsoftware.spine:spine-libgdx:3.8.55.1'
+//    implementation 'vip.skyhand.libgdxtextureview.spine:spine-libgdx:3.6.52.1'
+//    implementation 'vip.skyhand.libgdxtextureview.spine:spine-libgdx:3.8.55.1'
 
     implementation 'com.github.bytedance:AlphaPlayer:1.0.4'
 

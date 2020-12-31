@@ -8,13 +8,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.esotericsoftware.spine.AnimationState;
-import com.esotericsoftware.spine.AnimationStateData;
-import com.esotericsoftware.spine.Skeleton;
-import com.esotericsoftware.spine.SkeletonData;
-import com.esotericsoftware.spine.SkeletonJson;
-import com.esotericsoftware.spine.SkeletonRenderer;
-import com.esotericsoftware.spine.SkeletonRendererDebug;
+import vip.skyhand.libgdxtextureview.spine.AnimationState;
+import vip.skyhand.libgdxtextureview.spine.AnimationStateData;
+import vip.skyhand.libgdxtextureview.spine.Skeleton;
+import vip.skyhand.libgdxtextureview.spine.SkeletonData;
+import vip.skyhand.libgdxtextureview.spine.SkeletonJson;
+import vip.skyhand.libgdxtextureview.spine.SkeletonRenderer;
+import vip.skyhand.libgdxtextureview.spine.SkeletonRendererDebug;
 
 import org.jetbrains.annotations.NotNull;
 

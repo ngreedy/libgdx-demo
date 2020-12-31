@@ -17,6 +17,7 @@ import java.io.File
 
 /**
  * @author Skyhand
+ *
  */
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +33,8 @@ class MainActivity : AppCompatActivity() {
                 ), 0
             );
         }
-//        val assetNameList = assets.list("files").asList()
+//        ShowActivity.start(this, false, true, "")
+//        val assetNameList = assets.list("files").asList()_
         val path = intent.getStringExtra("path")
 
 
