@@ -366,7 +366,7 @@ public class AndroidGraphics implements Graphics, Renderer, GLTextureView.Render
         updatePpi();
         gl.glViewport(0, 0, this.width, this.height);
         if (!created) {
-            app.getApplicationListener().create();
+            app.getApplicationListener().create(); //note：这里才执行create  onResume之后了
             created = true;
             synchronized (this) {
                 running = true;

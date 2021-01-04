@@ -124,6 +124,6 @@ public class SlotData {
     }
 
     public String toString() {
-        return name;
+        return name + "...bone is  " + boneData.name;
     }
 }

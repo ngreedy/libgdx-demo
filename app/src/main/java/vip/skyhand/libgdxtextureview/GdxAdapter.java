@@ -6,18 +6,17 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import vip.skyhand.libgdxtextureview.spine.AnimationState;
 import vip.skyhand.libgdxtextureview.spine.AnimationStateData;
-import vip.skyhand.libgdxtextureview.spine.BoneData;
 import vip.skyhand.libgdxtextureview.spine.Skeleton;
 import vip.skyhand.libgdxtextureview.spine.SkeletonData;
 import vip.skyhand.libgdxtextureview.spine.SkeletonJson;
 import vip.skyhand.libgdxtextureview.spine.SkeletonRenderer;
 import vip.skyhand.libgdxtextureview.spine.SkeletonRendererDebug;
-import vip.skyhand.libgdxtextureview.spine.SlotData;
 
 public class GdxAdapter extends ApplicationAdapter {
 
@@ -49,18 +48,32 @@ public class GdxAdapter extends ApplicationAdapter {
 
         TextureAtlas atlas1 = new TextureAtlas(Gdx.files.internal("old/pet_egg_dog_child.atlas"));
         SkeletonJson json1 = new SkeletonJson(atlas1); // This loads skeleton JSON data, which is stateless.
+
+//        Array<TextureAtlas.AtlasRegion> regions = atlas1.getRegions();
+//        for (int i = 0; i < regions.size; i++) {
+//            Log.e(TAG, "create: " + regions.get(i).name);
+//            if (regions.get(i).name.equals("dog_trail")) {
+//                texture = regions.get(i).getTexture();
+//            }
+//        }
+
+
         json.setScale(0.5f);
         SkeletonData dogData = json1.readSkeletonData(Gdx.files.internal("old/pet_egg_dog_child.json"));
-        BoneData dogTrail = dogData.findBone("dog_trail");
+//        BoneData dogTrail = dogData.findBone("dog_trail");
 
+        json.tempRegion = json1.tempRegion;
         SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("old/pet_egg_cat_child.json"));
-        Object[] items = skeletonData.getSlots().items;
-        for (int index = 0; index < items.length; index++) {
-            SlotData slotData = skeletonData.getSlots().get(index);
-            if (slotData.getName().equals("cat_trail")) {
-                slotData.setBoneData(dogTrail);
-            }
-        }
+
+
+//        Object[] items = skeletonData.getSlots().items;
+//        for (int index = 0; index < items.length; index++) {
+//            SlotData slotData = skeletonData.getSlots().get(index);
+//            Log.e(TAG, "create: " + slotData);
+//            if (slotData.getName().equals("cat_trail")) {
+//                slotData.setBoneData(dogTrail);
+//            }
+//        }
 
         Log.i("GdxAdapter", "initSkeleton:" + skeletonData.getWidth() + "..." + skeletonData.getHeight());
         skeleton = new Skeleton(skeletonData); // Skeleton holds skeleton state (bone positions, slot attachments, etc).

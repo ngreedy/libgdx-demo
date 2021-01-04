@@ -35,6 +35,7 @@ import android.util.Log;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.FloatArray;
 import com.badlogic.gdx.utils.IntArray;
@@ -164,8 +165,6 @@ public class SkeletonJson {
             String slotName = slotMap.getString("name");
             String boneName = slotMap.getString("bone");
 
-            Log.e(TAG, "readSkeletonData: " + slotName + "........" + boneName);
-
             BoneData boneData = skeletonData.findBone(boneName);  //根据骨头名字 从上面的bones里找到骨头
             if (boneData == null)
                 throw new SerializationException("Slot bone not found: " + boneName);
@@ -179,7 +178,6 @@ public class SkeletonJson {
 
             data.attachmentName = slotMap.getString("attachment", null);
             data.blendMode = BlendMode.valueOf(slotMap.getString("blend", BlendMode.normal.name()));
-            Log.e(TAG, "readSkeletonData: " + data.attachmentName + ".............." + data.blendMode);
             skeletonData.slots.add(data);
         }
 
@@ -338,6 +336,9 @@ public class SkeletonJson {
         return skeletonData;
     }
 
+
+    public TextureRegion tempRegion;
+
     private Attachment readAttachment(JsonValue map, Skin skin, int slotIndex, String name, SkeletonData skeletonData) {
         float scale = this.scale;
         name = map.getString("name", name);
@@ -377,6 +378,15 @@ public class SkeletonJson {
             case linkedmesh: {
                 String path = map.getString("path", name);
                 MeshAttachment mesh = attachmentLoader.newMeshAttachment(skin, name, path);
+                Log.e(TAG, "readAttachment: " + name);
+                if (name.equals("dog_head") || name.equals("cat_head")) {
+                    if (tempRegion == null) {
+                        tempRegion = mesh.getRegion();
+                    } else {
+                        mesh.setRegion(tempRegion);
+                    }
+                }
+
                 if (mesh == null) return null;
                 mesh.setPath(path);
 
@@ -454,6 +464,7 @@ public class SkeletonJson {
         }
         return null;
     }
+
 
     private void readVertices(JsonValue map, VertexAttachment attachment, int verticesLength) {
         attachment.setWorldVerticesLength(verticesLength);

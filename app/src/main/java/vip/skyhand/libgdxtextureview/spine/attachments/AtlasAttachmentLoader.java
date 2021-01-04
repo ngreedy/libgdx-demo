@@ -56,7 +56,7 @@ public class AtlasAttachmentLoader implements AttachmentLoader {
 		return attachment;
 	}
 
-	public MeshAttachment newMeshAttachment (Skin skin, String name, String path) {
+	public MeshAttachment newMeshAttachment (Skin skin, String name, String path) {//从png里读取region 放attachment里
 		AtlasRegion region = atlas.findRegion(path);
 		if (region == null) throw new RuntimeException("Region not found in atlas: " + path + " (mesh attachment: " + name + ")");
 		MeshAttachment attachment = new MeshAttachment(name);
