@@ -378,14 +378,14 @@ public class SkeletonJson {
             case linkedmesh: {
                 String path = map.getString("path", name);
                 MeshAttachment mesh = attachmentLoader.newMeshAttachment(skin, name, path);
-                Log.e(TAG, "readAttachment: " + name);
-                if (name.equals("dog_head") || name.equals("cat_head")) {
-                    if (tempRegion == null) {
-                        tempRegion = mesh.getRegion();
-                    } else {
-                        mesh.setRegion(tempRegion);
-                    }
-                }
+//                Log.e(TAG, "readAttachment: " + name);
+//                if (name.equals("dog_head") || name.equals("cat_head")) {
+//                    if (tempRegion == null) {
+//                        tempRegion = mesh.getRegion();
+//                    } else {
+//                    }
+//                }
+//                        mesh.setRegion(tempRegion);
 
                 if (mesh == null) return null;
                 mesh.setPath(path);

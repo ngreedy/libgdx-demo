@@ -44,7 +44,6 @@ dependencies {
 //    natives "com.badlogicgames.gdx:gdx-platform:1.9.10:natives-armeabi-v8a"
 //    natives "com.badlogicgames.gdx:gdx-platform:1.9.10:natives-x86_64"
     natives "com.badlogicgames.gdx:gdx-platform:1.9.10:natives-x86"
-
 }
 
 //task copyAndroidNatives() {
