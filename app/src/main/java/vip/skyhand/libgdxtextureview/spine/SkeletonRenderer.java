@@ -30,10 +30,14 @@
 
 package vip.skyhand.libgdxtextureview.spine;
 
+import android.util.Log;
+
+import com.badlogic.gdx.SkinHelper;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.FloatArray;
@@ -167,11 +171,43 @@ public class SkeletonRenderer {
                 vertices = this.vertices.setSize(verticesLength);
                 mesh.computeWorldVertices(slot, 0, count, vertices, 0, vertexSize);
                 triangles = mesh.getTriangles();
-                texture = mesh.getRegion().getTexture();
+
                 //这里生成的texture 就是png里的
-//                if (mesh.getName().equals("cat_trail")) {
-//                    texture = GdxAdapter.texture;
-//                }
+                TextureAtlas.AtlasRegion region = (TextureAtlas.AtlasRegion) mesh.getRegion();
+                int width = region.getRegionWidth();
+                int height = region.getRegionHeight();
+
+                Log.e("TAG", "draw: "+mesh.getName());
+                Texture skintTexture = SkinHelper.INSTANCE.loadSkin(mesh.getName());
+                if (skintTexture != null) {
+//                    TextureAtlas.AtlasRegion atlasRegion = new TextureAtlas.AtlasRegion(skintTexture, 0, 0,
+//                            region.rotate ? height : width, region.rotate ? width : height);
+                    mesh.getRegion().setTexture(skintTexture);
+//                    atlasRegion.index = region.index;
+////
+//                    atlasRegion.name = region.name;
+//                    atlasRegion.offsetX = region.offsetX;
+//                    atlasRegion.offsetY = region.offsetY;
+//
+                    region.originalHeight = skintTexture.getHeight();
+                    region.originalWidth = skintTexture.getWidth();
+                    region.setRegionWidth(skintTexture.getWidth());
+                    region.setRegionHeight(skintTexture.getHeight());
+//                    region.rotate = region.rotate;
+//                    region.degrees = region.degrees;
+//                    region.splits = region.splits;
+//                    region.pads = region.pads;
+                    region.setV(0);
+                    region.setV2(1);
+                    region.setU(0);
+                    region.setU2(1);
+//
+//                    mesh.setRegion(atlasRegion);
+//                    mesh.getRegion().setTexture(skintTexture);
+                    mesh.updateUVs();
+                }
+                texture = mesh.getRegion().getTexture();
+
                 uvs = mesh.getUVs();
                 color = mesh.getColor();
 

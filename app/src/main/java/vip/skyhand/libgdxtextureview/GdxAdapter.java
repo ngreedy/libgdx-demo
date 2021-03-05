@@ -1,9 +1,12 @@
 package vip.skyhand.libgdxtextureview;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.SkinHelper;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
@@ -44,7 +47,13 @@ public class GdxAdapter extends ApplicationAdapter {
         json = new SkeletonJson(atlas); // This loads skeleton JSON data, which is stateless.
         json.setScale(0.5f);
 
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                SkinHelper.INSTANCE.activeSkin("face", "111");
 
+            }
+        }, 5000);
 //        TextureAtlas atlas1 = new TextureAtlas(Gdx.files.internal("old/pet_egg_dog_child.atlas"));
 //        SkeletonJson json1 = new SkeletonJson(atlas1); // This loads skeleton JSON data, which is stateless.
 
@@ -91,6 +100,11 @@ public class GdxAdapter extends ApplicationAdapter {
 
 //        state.setEmptyAnimation(0,1f);
 //
+        state.addAnimation(0, "move_01", false, 0);
+        state.addAnimation(0, "move_02", false, 0);
+        state.addAnimation(0, "move_03", false, 0);
+        state.addAnimation(0, "move_04", false, 0);
+        state.addAnimation(0, "move_05", false, 0);
         state.addAnimation(0, "move_01", false, 0);
         state.addAnimation(0, "move_02", false, 0);
         state.addAnimation(0, "move_03", false, 0);

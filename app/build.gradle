@@ -50,10 +50,11 @@ dependencies {
 
 
     //引入libgdx
-    implementation 'com.badlogicgames.gdx:gdx:1.9.10'
+//    implementation 'com.badlogicgames.gdx:gdx:1.9.10'
     //api "com.badlogicgames.gdx:gdx-backend-android:1.9.9"
 
     implementation project(':gdx-backend-android-textureview')
+    api project(':gdx')
 
 
     //解析spine

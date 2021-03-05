@@ -40,7 +40,8 @@ import vip.skyhand.libgdxtextureview.spine.attachments.Attachment;
 /** Stores attachments by slot index and attachment name.
  * <p>
  * See SkeletonData {@link SkeletonData#defaultSkin}, Skeleton {@link Skeleton#skin}, and
- * <a href="http://esotericsoftware.com/spine-runtime-skins">Runtime skins</a> in the Spine Runtimes Guide. */
+ * <a href="h
+ * ttp://esotericsoftware.com/spine-runtime-skins">Runtime skins</a> in the Spine Runtimes Guide. */
 public class Skin {
 	final String name;
 	final ObjectMap<Key, Attachment> attachments = new ObjectMap();
