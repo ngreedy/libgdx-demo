@@ -177,33 +177,20 @@ public class SkeletonRenderer {
                 int width = region.getRegionWidth();
                 int height = region.getRegionHeight();
 
-                Log.e("TAG", "draw: "+mesh.getName());
+                Log.e("TAG", "draw: " + mesh.getName());
                 Texture skintTexture = SkinHelper.INSTANCE.loadSkin(mesh.getName());
                 if (skintTexture != null) {
-//                    TextureAtlas.AtlasRegion atlasRegion = new TextureAtlas.AtlasRegion(skintTexture, 0, 0,
-//                            region.rotate ? height : width, region.rotate ? width : height);
-                    mesh.getRegion().setTexture(skintTexture);
-//                    atlasRegion.index = region.index;
-////
-//                    atlasRegion.name = region.name;
-//                    atlasRegion.offsetX = region.offsetX;
-//                    atlasRegion.offsetY = region.offsetY;
-//
-                    region.originalHeight = skintTexture.getHeight();
-                    region.originalWidth = skintTexture.getWidth();
-                    region.setRegionWidth(skintTexture.getWidth());
-                    region.setRegionHeight(skintTexture.getHeight());
-//                    region.rotate = region.rotate;
-//                    region.degrees = region.degrees;
-//                    region.splits = region.splits;
-//                    region.pads = region.pads;
-                    region.setV(0);
-                    region.setV2(1);
-                    region.setU(0);
-                    region.setU2(1);
-//
-//                    mesh.setRegion(atlasRegion);
-//                    mesh.getRegion().setTexture(skintTexture);
+                    TextureAtlas.AtlasRegion newRegion = new TextureAtlas.AtlasRegion(region);
+                    newRegion.setTexture(skintTexture);
+                    newRegion.originalHeight = skintTexture.getHeight();
+                    newRegion.originalWidth = skintTexture.getWidth();
+                    newRegion.setRegionWidth(skintTexture.getWidth());
+                    newRegion.setRegionHeight(skintTexture.getHeight());
+                    newRegion.setV(0);
+                    newRegion.setV2(1);
+                    newRegion.setU(0);
+                    newRegion.setU2(1);
+                    mesh.setRegion(newRegion);
                     mesh.updateUVs();
                 }
                 texture = mesh.getRegion().getTexture();
