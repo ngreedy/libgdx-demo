@@ -1,2 +1,2 @@
-include ':gdx'
+include ':gdx'//include ':gdx'
 include ':app','gdx-backend-android-textureview'

@@ -43,17 +43,17 @@ public class GdxAdapter extends ApplicationAdapter {
         debugRenderer.setBoundingBoxes(false);
         debugRenderer.setRegionAttachments(false);
 
-        atlas = new TextureAtlas(Gdx.files.internal("old/pet_egg_cat_adult.atlas"));
+        atlas = new TextureAtlas(Gdx.files.internal("old/pet_egg_dog_adult.atlas"));
         json = new SkeletonJson(atlas); // This loads skeleton JSON data, which is stateless.
-        json.setScale(0.5f);
+//        json.setScale(0.5f);
 
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                SkinHelper.INSTANCE.activeSkin("face", "111");
-
-            }
-        }, 5000);
+//        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                SkinHelper.INSTANCE.activeSkin("pet","face", "111");
+//
+//            }
+//        }, 5000);
 //        TextureAtlas atlas1 = new TextureAtlas(Gdx.files.internal("old/pet_egg_dog_child.atlas"));
 //        SkeletonJson json1 = new SkeletonJson(atlas1); // This loads skeleton JSON data, which is stateless.
 
@@ -66,12 +66,11 @@ public class GdxAdapter extends ApplicationAdapter {
 //        }
 
 
-        json.setScale(0.5f);
 //        SkeletonData dogData = json1.readSkeletonData(Gdx.files.internal("old/pet_egg_dog_child.json"));
 //        BoneData dogTrail = dogData.findBone("dog_trail");
 
 //        json.tempRegion = json1.tempRegion;
-        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("old/pet_egg_cat_adult.json"));
+        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("old/pet_egg_dog_adult.json"));
 
 
 //        Object[] items = skeletonData.getSlots().items;
@@ -100,7 +99,9 @@ public class GdxAdapter extends ApplicationAdapter {
 
 //        state.setEmptyAnimation(0,1f);
 //
-        state.addAnimation(0, "move_01", false, 0);
+        state.addAnimation(0, "bye", false, 0);
+        state.addAnimation(0, "bye", false, 0);
+        state.addAnimation(0, "bye", false, 0);
         state.addAnimation(0, "move_02", false, 0);
         state.addAnimation(0, "move_03", false, 0);
         state.addAnimation(0, "move_04", false, 0);
@@ -109,6 +110,7 @@ public class GdxAdapter extends ApplicationAdapter {
         state.addAnimation(0, "move_02", false, 0);
         state.addAnimation(0, "move_03", false, 0);
         state.addAnimation(0, "move_04", false, 0);
+        state.addAnimation(0, "move_01", true, 0);
         state.addAnimation(0, "move_05", false, 0);
         state.addAnimation(0, "move_01", true, 0);
 //        state.addAnimation(0, "zoulu", false, 0); // Run after the jump.
@@ -121,15 +123,26 @@ public class GdxAdapter extends ApplicationAdapter {
 //        state.addAnimation(0, "huishou", false, 0); // Run after the jump.
 //        state.addAnimation(0, "huishou", false, 0); // Run after the jump.
 //        state.addAnimation(0, "huishou", false, 0); // Run after the jump.
-//        state.addAnimation(0, "lihuxu", false, 0); // Run after the jump.
-//        state.addAnimation(0, "lihuxu", false, 0); // Run after the jump.
-//        state.addAnimation(0, "lihuxu", false, 0); // Run after the jump.
-////        state.addAnimation(0, "tushetou", false, 0); // Run after the jump.
-//        state.addAnimation(0, "shihao", false, 0); // Run after the jump.
-//        state.addAnimation(0, "shihao", false, 0); // Run after the jump.
-//        state.addAnimation(0, "shihao", false, 0); // Run after the jump.
-//        state.addAnimation(0, "tianzhua", false, 0); // Run after the jump.
-////        state.addAnimation(0, "yaoweiba", false, 0); // Run after the jump.
+//        state.addAnimation(0, "huishou", false, 0); // Run after the jump.
+//        state.addAnimation(0, "huishou", false, 0); // Run after the jump.
+//        state.addAnimation(0, "huishou", false, 0); // Run after the jump.
+//        state.addAnimation(0, "huishou", false, 0); // Run after the jump.
+////        state.addAnimation(0, "lihuxu", false, 0); // Run after the jump.
+////        state.addAnimation(0, "lihuxu", false, 0); // Run after the jump.
+////        state.addAnimation(0, "lihuxu", false, 0); // Run after the jump.
+//        state.addAnimation(0, "tushetou", false, 0); // Run after the jump.
+//        state.addAnimation(0, "tushetou", false, 0); // Run after the jump.
+//        state.addAnimation(0, "tushetou", false, 0); // Run after the jump.
+//        state.addAnimation(0, "tushetou", false, 0); // Run after the jump.
+//        state.addAnimation(0, "tushetou", false, 0); // Run after the jump.
+////        state.addAnimation(0, "shihao", false, 0); // Run after the jump.
+////        state.addAnimation(0, "shihao", false, 0); // Run after the jump.
+////        state.addAnimation(0, "shihao", false, 0); // Run after the jump.
+////        state.addAnimation(0, "tianzhua", false, 0); // Run after the jump.
+//        state.addAnimation(0, "yaoweiba", false, 0); // Run after the jump.
+//        state.addAnimation(0, "yaoweiba", false, 0); // Run after the jump.
+//        state.addAnimation(0, "yaoweiba", false, 0); // Run after the jump.
+//        state.addAnimation(0, "yaoweiba", false, 0); // Run after the jump.
 //        state.addAnimation(0, "tiaoyue", false, 0); // Run after the jump.
 //        state.addAnimation(0, "tiaoyue", false, 0); // Run after the jump.
 //        state.addAnimation(0, "xiaoshi", false, 0); // Run after the jump.
@@ -142,7 +155,6 @@ public class GdxAdapter extends ApplicationAdapter {
 //        state.addAnimation(0, "dunxia", false, 0); // Run after the jump.
 //        state.addAnimation(0, "zhanqi", false, 0); // Run after the jump.
 //        state.addAnimation(0, "benpao", true, 0); // Run after the jump.
-////        state.addAnimation(0, "zuoxia", false, 0); // Run after the jump.
 
         state.addListener(new AnimationState.AnimationStateAdapter() {
             @Override

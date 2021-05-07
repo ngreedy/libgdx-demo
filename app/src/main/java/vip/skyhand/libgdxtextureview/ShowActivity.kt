@@ -11,6 +11,7 @@ import android.view.SurfaceView
 import android.view.TextureView
 import android.view.View
 import android.widget.Toast
+import com.badlogic.gdx.SkinHelper
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 import kotlinx.android.synthetic.main.activity_spine_test.*
 
@@ -100,7 +101,8 @@ class ShowActivity : Activity() {
         }
 
         button.setOnClickListener {
-            ShowActivity.start(this, useTextureView = true, isTranlate = true, name = "")
+//            ShowActivity.start(this, useTextureView = true, isTranlate = true, name = "")
+            SkinHelper.INSTANCE.cancelSkin("pet")
         }
     }
 

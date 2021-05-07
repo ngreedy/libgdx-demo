@@ -3,6 +3,7 @@ package com.badlogic.gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.TextureData;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.HashMap;
 
@@ -11,38 +12,61 @@ import java.util.HashMap;
  * 2021/2/19
  * hjn
  * <p>
-// * 皮肤管理类  每个部位是一个文件， 以其region的name命名
  */
 public enum SkinHelper {
     INSTANCE;
 
-    private HashMap<String, TextureData> regionMap = new HashMap<String, TextureData>();
+    private final HashMap<String, TextureAtlas.AtlasRegion> regionCache = new HashMap<String, TextureAtlas.AtlasRegion>();
 
-    private HashMap<String, String> currentSkinMap = new HashMap<String, String>(); //当前激活的
+    private final HashMap<String, TextureAtlas.AtlasRegion> originRegionMap = new HashMap<String, TextureAtlas.AtlasRegion>();
+
+    public final HashMap<String, HashMap<String, String>> currentSkinMap = new HashMap<String, HashMap<String, String>>();
 
 
-
-    public Texture loadSkin(String name) {
-        if (currentSkinMap.get(name) == null) return null;
-        TextureData textureData = regionMap.get(name);
-        if (textureData == null) {
-//            textureData = TextureData.Factory.loadFromFile(Gdx.files.external(currentSkinMap.get(name)), Pixmap.Format.RGBA8888, false);
-            textureData = TextureData.Factory.loadFromFile(Gdx.files.internal("old/head_01.png"), Pixmap.Format.RGBA8888, false);
-            regionMap.put(name, textureData);
+    private final HashMap<String, TextureData> textureDataCache = new HashMap<String, TextureData>();// 初始region，
+    public TextureData getTextureData(String regionName) {
+        try {
+            TextureData textureData = textureDataCache.get(regionName);
+            if (textureData == null) {
+//                String filePath = currentSkinMap.get("roleId").get("dog");
+//                if (filePath == null || "".equals(filePath)) {
+//                    return textureData;
+//                }
+                regionName = regionName.replace("images/","");
+                textureData = TextureData.Factory.loadFromFile(Gdx.files.internal("skin/"+regionName+".png"), Pixmap.Format.RGBA8888, false);
+                textureDataCache.put(regionName, textureData);
+            }
+            return textureData;
+        } catch (Exception e) {
+            return null;
         }
-        return new Texture(textureData);
     }
 
     /**
-     * 激活某部位的皮肤
+
      */
-    public void activeSkin(String name, String skinImgPath) {
+    public void activeSkin(String petId, String name, String skinImgPath) {
+        System.out.println("pet active skin " + petId + "...." + name + "...." + skinImgPath);
         if (skinImgPath == null || "".equals(skinImgPath)) return;
-        currentSkinMap.clear();
-        currentSkinMap.put(name, skinImgPath);
+        if (currentSkinMap.get(petId) == null) {
+            currentSkinMap.put(petId, new HashMap<String, String>());
+        }
+        currentSkinMap.get(petId).put(name, skinImgPath);
     }
 
-    public void cancelSkin() {
-        currentSkinMap.clear();
+    public void cancelSkin(String petId) {
+        System.out.println("pet cancel skin " + petId);
+        if (currentSkinMap.get(petId) != null) {
+            currentSkinMap.get(petId).clear();
+            currentSkinMap.remove(petId);
+        }
+    }
+
+    public TextureAtlas.AtlasRegion getOriginalRegion(String name) {
+        return originRegionMap.get(name);
+    }
+
+    public void saveOriginRegion(String name, TextureAtlas.AtlasRegion region) {
+        originRegionMap.put(name, region);
     }
 }

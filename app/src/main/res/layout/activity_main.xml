@@ -17,7 +17,6 @@
     <Button
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:visibility="gone"
         android:onClick="jump"
         android:text="jump"/>
 </android.support.constraint.ConstraintLayout>

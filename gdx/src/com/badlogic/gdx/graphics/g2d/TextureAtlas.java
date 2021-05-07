@@ -281,12 +281,6 @@ public class TextureAtlas implements Disposable {
             int height = region.height;
             AtlasRegion atlasRegion = new AtlasRegion(pageToTexture.get(region.page), region.left, region.top,
                     region.rotate ? height : width, region.rotate ? width : height);
-//            Texture texture = SkinHelper.INSTANCE.loadSkin(region.name);
-//            if (texture != null) {
-//                atlasRegion = new AtlasRegion(texture, 0, 0,
-//                        region.rotate ? height : width, region.rotate ? width : height);
-//            }
-//            System.out.println(region.name + ".............");
             atlasRegion.index = region.index;
             atlasRegion.name = region.name;
             atlasRegion.offsetX = region.offsetX;
@@ -299,6 +293,25 @@ public class TextureAtlas implements Disposable {
             atlasRegion.pads = region.pads;
             if (region.flip) atlasRegion.flip(false, true);
             regions.add(atlasRegion);
+        }
+
+        for (Region region : data.regions) {
+            int width = region.width;
+            int height = region.height;
+            AtlasRegion atlasRegion = new AtlasRegion(pageToTexture.get(region.page), region.left, region.top,
+                    region.rotate ? height : width, region.rotate ? width : height);
+            atlasRegion.index = region.index;
+            atlasRegion.name = region.name;
+            atlasRegion.offsetX = region.offsetX;
+            atlasRegion.offsetY = region.offsetY;
+            atlasRegion.originalHeight = region.originalHeight;
+            atlasRegion.originalWidth = region.originalWidth;
+            atlasRegion.rotate = region.rotate;
+            atlasRegion.degrees = region.degrees;
+            atlasRegion.splits = region.splits;
+            atlasRegion.pads = region.pads;
+            if (region.flip) atlasRegion.flip(false, true);
+            SkinHelper.INSTANCE.saveOriginRegion(region.name, atlasRegion);
         }
     }
 

@@ -35,14 +35,18 @@ import android.util.Log;
 import com.badlogic.gdx.SkinHelper;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.FloatArray;
 import com.badlogic.gdx.utils.NumberUtils;
 import com.badlogic.gdx.utils.ShortArray;
+
+import java.util.HashMap;
 
 import vip.skyhand.libgdxtextureview.spine.attachments.Attachment;
 import vip.skyhand.libgdxtextureview.spine.attachments.ClippingAttachment;
@@ -130,6 +134,32 @@ public class SkeletonRenderer {
         if (vertexEffect != null) vertexEffect.end();
     }
 
+    private final HashMap<String, TextureAtlas.AtlasRegion> regionCache = new HashMap<>(); //region的缓存
+
+    public TextureAtlas.AtlasRegion loadSkin(String roleId, String name, TextureRegion region) {
+//        if (SkinHelper.INSTANCE.currentSkinMap.get(roleId) == null || SkinHelper.INSTANCE.currentSkinMap.get(roleId).get(name) == null) {
+//            return SkinHelper.INSTANCE.getOriginalRegion(name);
+//        }
+        TextureAtlas.AtlasRegion regionData = regionCache.get(name);
+        if (regionData == null) {
+            regionData = new TextureAtlas.AtlasRegion(region);
+            TextureData texture = SkinHelper.INSTANCE.getTextureData(name);
+            if (texture == null) return null;
+            Texture newTexture = new Texture(texture);
+            regionData.setTexture(newTexture);
+            regionData.originalHeight = newTexture.getHeight();
+            regionData.originalWidth = newTexture.getWidth();
+            regionData.setRegionWidth(newTexture.getWidth());
+            regionData.setRegionHeight(newTexture.getHeight());
+            regionData.setV(0);
+            regionData.setV2(1);
+            regionData.setU(0);
+            regionData.setU2(1);
+            regionCache.put(name, regionData);
+        }
+        return regionData;
+    }
+
     @SuppressWarnings("null")
     public void draw(PolygonSpriteBatch batch, Skeleton skeleton) {
         Vector2 tempPos = this.temp;
@@ -172,25 +202,10 @@ public class SkeletonRenderer {
                 mesh.computeWorldVertices(slot, 0, count, vertices, 0, vertexSize);
                 triangles = mesh.getTriangles();
 
-                //这里生成的texture 就是png里的
-                TextureAtlas.AtlasRegion region = (TextureAtlas.AtlasRegion) mesh.getRegion();
-                int width = region.getRegionWidth();
-                int height = region.getRegionHeight();
-
                 Log.e("TAG", "draw: " + mesh.getName());
-                Texture skintTexture = SkinHelper.INSTANCE.loadSkin(mesh.getName());
-                if (skintTexture != null) {
-                    TextureAtlas.AtlasRegion newRegion = new TextureAtlas.AtlasRegion(region);
-                    newRegion.setTexture(skintTexture);
-                    newRegion.originalHeight = skintTexture.getHeight();
-                    newRegion.originalWidth = skintTexture.getWidth();
-                    newRegion.setRegionWidth(skintTexture.getWidth());
-                    newRegion.setRegionHeight(skintTexture.getHeight());
-                    newRegion.setV(0);
-                    newRegion.setV2(1);
-                    newRegion.setU(0);
-                    newRegion.setU2(1);
-                    mesh.setRegion(newRegion);
+                TextureAtlas.AtlasRegion region = loadSkin("pet", mesh.getName(), (TextureAtlas.AtlasRegion) mesh.getRegion());
+                if (region != null) {
+                    mesh.setRegion(region);
                     mesh.updateUVs();
                 }
                 texture = mesh.getRegion().getTexture();
