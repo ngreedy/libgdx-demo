@@ -99,20 +99,21 @@ public class GdxAdapter extends ApplicationAdapter {
 
 //        state.setEmptyAnimation(0,1f);
 //
-        state.addAnimation(0, "bye", false, 0);
-        state.addAnimation(0, "bye", false, 0);
-        state.addAnimation(0, "bye", false, 0);
-        state.addAnimation(0, "move_02", false, 0);
-        state.addAnimation(0, "move_03", false, 0);
-        state.addAnimation(0, "move_04", false, 0);
-        state.addAnimation(0, "move_05", false, 0);
-        state.addAnimation(0, "move_01", false, 0);
-        state.addAnimation(0, "move_02", false, 0);
-        state.addAnimation(0, "move_03", false, 0);
-        state.addAnimation(0, "move_04", false, 0);
-        state.addAnimation(0, "move_01", true, 0);
-        state.addAnimation(0, "move_05", false, 0);
-        state.addAnimation(0, "move_01", true, 0);
+//        state.addAnimation(0, "bye", false, 0);
+//        state.addAnimation(0, "bye", false, 0);
+//        state.addAnimation(0, "bye", false, 0);
+//        state.addAnimation(0, "move_02", false, 0);
+//        state.addAnimation(0, "move_03", false, 0);
+//        state.addAnimation(0, "move_04", false, 0);
+//        state.addAnimation(0, "move_05", false, 0);
+//        state.addAnimation(0, "move_01", false, 0);
+//        state.addAnimation(0, "move_02", false, 0);
+//        state.addAnimation(0, "move_03", false, 0);
+//        state.addAnimation(0, "move_04", false, 0);
+//        state.addAnimation(0, "move_01", true, 0);
+//        state.addAnimation(0, "move_05", false, 0);
+//        state.addAnimation(0, "move_01", true, 0);
+        state.addAnimation(0, "weak", true, 0);
 //        state.addAnimation(0, "zoulu", false, 0); // Run after the jump.
 //        state.addAnimation(0, "zoulu", false, 0); // Run after the jump.
 //        state.addAnimation(0, "zoulu", false, 0); // Run after the jump.

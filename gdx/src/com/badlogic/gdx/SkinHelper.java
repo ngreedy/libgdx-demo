@@ -1,11 +1,11 @@
 package com.badlogic.gdx;
 
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.HashMap;
+
 
 /**
  * game_werewolf
@@ -24,6 +24,7 @@ public enum SkinHelper {
 
 
     private final HashMap<String, TextureData> textureDataCache = new HashMap<String, TextureData>();// 初始region，
+
     public TextureData getTextureData(String regionName) {
         try {
             TextureData textureData = textureDataCache.get(regionName);
@@ -32,8 +33,8 @@ public enum SkinHelper {
 //                if (filePath == null || "".equals(filePath)) {
 //                    return textureData;
 //                }
-                regionName = regionName.replace("images/","");
-                textureData = TextureData.Factory.loadFromFile(Gdx.files.internal("skin/"+regionName+".png"), Pixmap.Format.RGBA8888, false);
+                System.out.println("getTextureData====> " + regionName);
+                textureData = TextureData.Factory.loadFromFile(Gdx.files.internal("skin/" + regionName + ".png"), Pixmap.Format.RGBA8888, false);
                 textureDataCache.put(regionName, textureData);
             }
             return textureData;
@@ -43,7 +44,7 @@ public enum SkinHelper {
     }
 
     /**
-
+     *
      */
     public void activeSkin(String petId, String name, String skinImgPath) {
         System.out.println("pet active skin " + petId + "...." + name + "...." + skinImgPath);
